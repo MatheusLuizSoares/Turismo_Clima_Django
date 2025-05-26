@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}{{ spot.name }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <div class="card mb-4 shadow">
+            <!-- Imagem em destaque -->
+            <img src="{{ spot.image.url }}" 
+                 class="card-img-top" 
+                 alt="{{ spot.name }}"
+                 style="max-height: 500px; object-fit: cover;">
+                 
+            <div class="card-body">
+                <h1 class="display-4">{{ spot.name }}</h1>
+                <div class="mb-4">
+                    {{ spot.description|linebreaks }}
+                </div>
+                
+                <!-- API de Clima -->
+                <div class="weather-card p-4 mb-4">
+                    <h3><i class="bi bi-cloud-sun"></i> Clima Atual</h3>
+                    {% include 'partials/weather.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Coluna lateral com API -->
+    <div class="col-md-4">
+        <div class="card shadow sticky-top">
+            <div class="card-body">
+                <h4 class="mb-3">API Endpoints</h4>
+                <div class="list-group">
+                    <a href="/api/spots/" 
+                       class="list-group-item list-group-item-action"
+                       target="_blank">
+                       <i class="bi bi-code-slash"></i> Lista de Pontos (JSON)
+                    </a>
+                    <a href="/api/spots/{{ spot.id }}/" 
+                       class="list-group-item list-group-item-action"
+                       target="_blank">
+                       <i class="bi bi-file-code"></i> Detalhes deste Ponto (JSON)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

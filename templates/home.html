@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Pontos Turísticos{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <h1 class="display-4">Descubra Nossos Pontos Turísticos</h1>
+        <p class="lead">Explore os melhores lugares da região</p>
+    </div>
+
+    {% for spot in spots %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow">
+            <img src="{{ spot.image.url }}" class="card-img-top" alt="{{ spot.name }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ spot.name }}</h5>
+                <p class="card-text">{{ spot.description|truncatechars:100 }}</p>
+                <a href="{% url 'spot_detail' spot.id %}" class="btn btn-primary">
+                    Ver Detalhes
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
