@@ -11,7 +11,7 @@ class TouristSpotAdmin(admin.ModelAdmin):
             cidade, pais = obj.location.split(',', 1)  # Split apenas na primeira vírgula
             return f"{cidade.strip()} • {pais.strip().upper()}"
         except ValueError:
-            return f"⚠️ Formato inválido: {obj.location}"
+            return f" Formato inválido: {obj.location}"
     
     formatted_location.short_description = 'Localização'
     formatted_location.admin_order_field = 'location'
