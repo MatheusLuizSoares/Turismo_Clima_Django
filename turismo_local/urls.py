@@ -8,3 +8,7 @@ urlpatterns = [
     path('api/', include('turismo.urls_api')),  # API endpoints
     path('', include('turismo.urls_views')),    # Template views
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
